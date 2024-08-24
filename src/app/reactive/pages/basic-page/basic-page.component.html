@@ -12,13 +12,21 @@
         <div class="col-sm-9">
 
           <input type="text"
-          class="form-control"
-          formControlName="name"
-          placeholder="Nombre del producto">
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Nombre del producto">
 
-          <span class="form-text text-danger">
+          <span *ngIf="myForm.controls['name'].getError('required')
+              && myForm.controls['name'].touched"
+          class="form-text text-danger">
+            <!-- Debe de ser required -->
+            This Field is required
+          </span>
+          <span *ngIf="myForm.controls['name'].getError('minlength')
+              && myForm.controls['name'].touched"
+          class="form-text text-danger">
             <!-- Debe de ser de 3 letras -->
-            error message
+            This Field requires min 3 characters
           </span>
         </div>
       </div>
