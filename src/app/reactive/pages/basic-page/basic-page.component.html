@@ -16,18 +16,12 @@
                   formControlName="name"
                   placeholder="Nombre del producto">
 
-          <span *ngIf="myForm.controls['name'].getError('required')
-              && myForm.controls['name'].touched"
+          <span *ngIf="isValidField('name')"
           class="form-text text-danger">
             <!-- Debe de ser required -->
-            This Field is required
+            {{ getFieldError('name') }}
           </span>
-          <span *ngIf="myForm.controls['name'].getError('minlength')
-              && myForm.controls['name'].touched"
-          class="form-text text-danger">
-            <!-- Debe de ser de 3 letras -->
-            This Field requires min 3 characters
-          </span>
+
         </div>
       </div>
 
@@ -39,8 +33,8 @@
           formControlName="price"
           class="form-control"
           placeholder="Precio del producto">
-          <span class="form-text text-danger">
-            El precio debe de ser 0 o mayor
+          <span *ngIf="isValidField('price')" class="form-text text-danger">
+            price should be zero or above
           </span>
         </div>
       </div>
@@ -53,8 +47,8 @@
           formControlName="inStorage"
           class="form-control" placeholder="Existencias del producto">
 
-          <span class="form-text text-danger">
-            Las existencias deben de ser 0 o mayor
+          <span *ngIf="isValidField('inStorage')" class="form-text text-danger">
+            Storage should be more or equal than zero
           </span>
         </div>
       </div>
