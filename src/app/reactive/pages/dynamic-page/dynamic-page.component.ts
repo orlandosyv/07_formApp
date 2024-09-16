@@ -46,6 +46,7 @@ export class DynamicPageComponent {
     }
 
     console.log(this.myForm.value);
+    (this.myForm.controls['favoriteGames'] as FormArray ) = this.fb.array([]);
     this.myForm.reset();
   }
   isValidFieldInArray(formArray: FormArray, index: number) {
