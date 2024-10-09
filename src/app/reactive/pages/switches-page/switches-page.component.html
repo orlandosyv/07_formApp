@@ -2,7 +2,7 @@
 <hr>
 
 
-<form autocomplete="off">
+<form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off">
 
   <!-- Radio -->
   <div class="row mb-3">
@@ -10,14 +10,16 @@
     <div class="col-sm-9">
 
       <div class="form-check">
-        <input class="form-check-input" type="radio" value="M" id="radioMasculino">
+        <input class="form-check-input" type="radio" value="M"
+        formControlName="gender" id="radioMasculino">
         <label class="form-check-label" for="radioMasculino">
           Masculino
         </label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="radio" value="F" id="radioFemenino">
+        <input class="form-check-input" type="radio" value="F"
+        formControlName="gender" id="radioFemenino">
         <label class="form-check-label" for="radioFemenino">
           Femenino
         </label>
@@ -32,7 +34,8 @@
     <div class="col-sm-9">
 
       <div class="form-check form-switch mt-2">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+        formControlName="wantNotifications">
         <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
       </div>
 
@@ -44,12 +47,13 @@
     <label class="col-sm-3 col-form-label"></label>
     <div class="col-sm-9">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox"
+        formControlName="termsAndConditions" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Términos y condiciones de uso
         </label>
       </div>
-      <span class="form-text text-danger">
+      <span class="form-text text-danger" *ngIf="isValidField('termsAndConditions')">
         Debe de aceptar las condiciones de uso
       </span>
 
