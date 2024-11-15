@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as customValidator from '../../../shared/validators/validators';
+import { ValidatorsService } from '../../../shared/service/validators.service';
 
 @Component({
   templateUrl: './register-page.component.html'
@@ -8,17 +9,21 @@ import * as customValidator from '../../../shared/validators/validators';
 export class RegisterPageComponent {
 
   public myForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern(customValidator.firstNameAndLastnamePattern)]],
+    name: ['', [Validators.required, Validators.pattern(this.validatorsService.firstNameAndLastnamePattern)]],
     email: ['', [Validators.required, Validators.email]],
-    username: ['', [Validators.required, customValidator.cantBeStrider]],
+    username: ['', [Validators.required, this.validatorsService.cantBeStrider]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     password2: ['', [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder) {  }
+  constructor(
+    private fb: FormBuilder,
+    private validatorsService: ValidatorsService
+  ) {  }
 
   isValidField(field: string) {
     //TODO obtener validacion desde un servicio
+    return this.validatorsService.isValidField(this.myForm, field);
 
   }
 
