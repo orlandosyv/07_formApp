@@ -14,6 +14,7 @@ validate(control: AbstractControl): Observable<ValidationErrors | null> {
       if (email === 'fernando@google.com') {
         subscriber.next({ emailTaken: true });
         subscriber.complete();
+        //return;
       }
 
       subscriber.next(null);
@@ -22,6 +23,8 @@ validate(control: AbstractControl): Observable<ValidationErrors | null> {
 
   return httpCallObservable
   }
+
+
 
   // validate(control: AbstractControl): Observable<ValidationErrors | null> {
   //   const email = control.value;
